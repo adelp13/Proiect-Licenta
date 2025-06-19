@@ -50,5 +50,5 @@ class NMF:
             sursa_separata = librosa.istft(sursa_complexa, hop_length=pas, window='hann')
 
             #sursa_separata = librosa.griffinlim(sursa, hop_length=pas)
-            sursa_separata = sursa_separata / np.max(np.abs(sursa_separata))
+            # sursa_separata = sursa_separata / np.max(np.abs(sursa_separata))
             self.surse_separate.append(sursa_separata)

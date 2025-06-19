@@ -75,8 +75,3 @@ class ICA:
                 matrice_separare[i, :] = directie_canal_curent_nou
 
         self.surse_separate = matrice_separare @ self.canale_whitened
-
-        for i in range(self.surse_separate.shape[0]):
-            max_abs = np.max(np.abs(self.surse_separate[i]))
-            if max_abs > 0:
-                self.surse_separate[i] /= max_abs

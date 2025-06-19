@@ -90,7 +90,6 @@ class DUET:
 
             sursa1 = librosa.istft(sursa1, hop_length=pas, window='hann', length=self.nr_esantioane)
             sursa2 = librosa.istft(sursa2, hop_length=pas, window='hann', length=self.nr_esantioane)
-            sursa1 = sursa1 / np.max(np.abs(sursa1))
-            sursa2 = sursa2 / np.max(np.abs(sursa2))
+
             self.surse_separate = np.vstack((sursa1, sursa2))
 
