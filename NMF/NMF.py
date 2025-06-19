@@ -4,7 +4,7 @@ import librosa
 import soundfile as sf
 
 class NMF:
-    def __init__(self, canal, nr_surse=2, tip='single channel', nr_max_iteratii=3000):
+    def __init__(self, canal, nr_surse=2, tip='single channel', nr_max_iteratii=4000):
         self.tip = tip
         self.canal = canal
         self.nr_max_iteratii = nr_max_iteratii
@@ -12,7 +12,7 @@ class NMF:
         self.surse_separate = []
 
     def separare(self):
-        # calculam spectograma stft, adica fft dar pe ferestre scurte cu suprapunere
+        # calculam spectrograma stft, adica fft dar pe ferestre scurte cu suprapunere
         # deci un canal cu surse amestecate devine o matrice (momentele de timp in functie de frecvente)
         # spectograma = componente_spectrale * coeficienti_activare
         esantioane_per_fft = 1024

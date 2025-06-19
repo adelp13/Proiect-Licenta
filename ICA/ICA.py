@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import soundfile as sf
 
-
 class ICA:
     def __init__(self, canale, tip='fast ICA', nr_max_iteratii=2000, aplicare_whitening=True):
         self.aplicare_whitening = aplicare_whitening
@@ -13,7 +12,7 @@ class ICA:
         self.nr_max_iteratii = nr_max_iteratii
         self.surse_separate = []
         self.tip = tip
-        self.canale -= self.canale.mean(axis=1, keepdims=True)  # normalizam datele
+        self.canale -= self.canale.mean(axis=1, keepdims=True)
 
     def whitening(self):
         matrice_covarianta = (self.canale @ self.canale.T) / self.nr_esantioane

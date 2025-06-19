@@ -9,7 +9,7 @@ from KMEANS.KMEANS import kmeans
 fs = 16000
 
 class DUET:
-    def __init__(self, canale, nr_surse=2, tip='double channel', nr_max_iteratii=4000):
+    def __init__(self, canale, nr_surse=2, tip='double channel', nr_max_iteratii=5000):
         self.tip = tip
         self.canale = np.array(canale)
         self.nr_max_iteratii = nr_max_iteratii
@@ -71,20 +71,19 @@ class DUET:
                             masca2[i, j] = 1
                         index_punct += 1
 
-            plt.figure(figsize=(12, 5))
-
-            plt.subplot(1, 2, 1)
-            librosa.display.specshow(masca1, sr=fs, hop_length=pas, y_axis='log', x_axis='time', cmap='gray_r')
-            plt.title('masca 1')
-            plt.colorbar()
-
-            plt.subplot(1, 2, 2)
-            librosa.display.specshow(masca2, sr=fs, hop_length=pas, y_axis='log', x_axis='time', cmap='gray_r')
-            plt.title('masca 2')
-            plt.colorbar()
-
-            plt.tight_layout()
-            plt.show()
+            # plt.figure(figsize=(12, 5))
+            # plt.suptitle('MĂȘTILE', fontsize=16, fontweight='bold')
+            #
+            # plt.subplot(1, 2, 1)
+            # librosa.display.specshow(masca1, sr=fs, hop_length=pas, y_axis='log', x_axis='time', cmap='gray_r')
+            # plt.colorbar()
+            #
+            # plt.subplot(1, 2, 2)
+            # librosa.display.specshow(masca2, sr=fs, hop_length=pas, y_axis='log', x_axis='time', cmap='gray_r')
+            # plt.colorbar()
+            #
+            # plt.tight_layout(rect=[0, 0, 1, 0.95])
+            # plt.show()
 
             sursa1 = masca1 * spectograma1
             sursa2 = masca2 * spectograma1
