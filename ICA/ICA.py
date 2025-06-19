@@ -12,6 +12,7 @@ class ICA:
         self.nr_max_iteratii = nr_max_iteratii
         self.surse_separate = []
         self.tip = tip
+        self.matrice_whitening = []
         self.canale -= self.canale.mean(axis=1, keepdims=True)
 
     def whitening(self):
@@ -23,6 +24,7 @@ class ICA:
         # autovectori = directiile principale de variatie a datelor, autovalori = modulul directiilor
         autovalori, autovectori = np.linalg.eigh(matrice_covarianta)
         matrice_whitening = autovectori @ np.diag(1.0 / np.sqrt(autovalori + 0.0000000001)) @ autovectori.T # de la dreapta la stanga, rotim in sistemul de directii, scalam, rotim inapoi
+        self.matrice_whitening = matrice_whitening
         self.canale_whitened = matrice_whitening @ self.canale
 
     def functie_cost(self, val):
