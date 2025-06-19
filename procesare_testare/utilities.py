@@ -4,11 +4,12 @@ import librosa
 import librosa.display
 
 def medie_nula(semnal):
-    return semnal - np.mean(semnal)
+    medie = np.mean(semnal) # pt inversare
+    return semnal - medie, medie
 
 def dev_standard1(semnal):
     std = np.std(semnal)
-    return semnal / std
+    return semnal / std, std
 
 def plot_spectrograma(signal, i, sr=16000, n_fft=1024, hop_length=512, nume="spectrograma"):
     plt.figure(figsize=(10, 4))
