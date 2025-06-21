@@ -33,7 +33,4 @@ class SetDate(Dataset):
             mic2, _ = sf.read(os.path.join(self.folder_mic2, nume_fisier))
             intrare = torch.tensor(np.array([mic1, mic2]), dtype=torch.float32)
 
-        intrare = self.spectrograma(intrare)
-        surse = self.spectrograma(surse)
-
         return intrare, surse
