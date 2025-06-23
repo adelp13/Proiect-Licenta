@@ -24,5 +24,4 @@ class SetDate(Dataset):
             mic2, _ = sf.read(os.path.join(self.folder_mic2, nume_fisier))
             intrare = torch.tensor(np.array([mic1, mic2]), dtype=torch.float32)
 
-
         return intrare, surse
