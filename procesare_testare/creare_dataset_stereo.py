@@ -40,7 +40,7 @@ for fname in files_s1:
     s2, _ = sf.read(path_s2)
     surse = [s1, s2]
 
-    intarziere_max = int(0.02 * 16000)
+    intarziere_max = 240
 
     intarzieri = np.random.randint(-intarziere_max, intarziere_max, size=(2, 2))
     ponderi = np.random.uniform(0.2, 1.3, size=(2, 2))
