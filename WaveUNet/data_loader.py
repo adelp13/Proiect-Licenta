@@ -10,6 +10,15 @@ class SetDate(Dataset):
         self.folder_s1 = os.path.join(path, "s1")
         self.folder_s2 = os.path.join(path, "s2")
         self.folder_mic1 = os.path.join(path, "mic1")
+        self.folder_mic2 = os.path.join(path, "mic2")
+        self.folder_mono = os.path.join(path, "mix_clean")
+
+        self.nume_fisiere = sorted(os.listdir(self.folder_s1))
+        self.nume_fisiere = self.nume_fisiere[:nr_exemple]
+
+    def __len__(self):
+        return len(self.nume_fisiere)
+
     def __getitem__(self, index):
         nume_fisier = self.nume_fisiere[index]
         s1, _ = sf.read(os.path.join(self.folder_s1, nume_fisier))
