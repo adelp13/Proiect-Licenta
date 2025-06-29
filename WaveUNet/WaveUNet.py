@@ -62,7 +62,7 @@ class TransformerEncoder(nn.Module):
         return strat
 
 class WaveUNet(nn.Module):
-    def __init__(self, canale_intrare = 2, canale_iesire = 2, strat_atentie = False, nr_canale=[16, 32, 64, 128, 256, 512, 1024], timp = 64000):
+    def __init__(self, canale_intrare = 2, canale_iesire = 2, strat_atentie = False, nr_canale=[16, 32, 64, 128, 256, 512], timp = 64000):
         super().__init__()
         self.strat_atentie = strat_atentie
         self.canale_intrare = canale_intrare
@@ -108,7 +108,7 @@ class WaveUNet(nn.Module):
         if self.strat_atentie:
             self.pos_enc = PositionalEncoding(timp=timp, dim_embedding=nr_canale[-1])
             self.transformer_enc = nn.ModuleList()
-            for _ in range(5):
+            for _ in range(2):
                 self.transformer_enc.append(TransformerEncoder(dim_embedding=nr_canale[-1], dim_ff=nr_canale[-1]*4))
 
     def forward(self, strat):
@@ -139,7 +139,6 @@ class WaveUNet(nn.Module):
 
         strat = torch.tanh(self.final(strat))
         return strat
-
 
 class WaveUNetVarianta1(nn.Module):
     def __init__(self, canale_intrare = 2, canale_iesire = 2):

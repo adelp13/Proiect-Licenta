@@ -71,7 +71,6 @@ def testare(caz="mono", model="nmf"):
                 surse_separate = np.array(nmf.surse_separate)
             elif model == "wave":
                 model_wave_1 = WaveUNet(canale_intrare=1, strat_atentie=False)
-                model = WaveUNet(canale_intrare=1, strat_atentie=False)  # sau True, vezi cum ai salvat!
                 model_wave_1.load_state_dict(torch.load("../WaveUNet/model_wave_1.pth", map_location=device))
                 model_wave_1.to(device)
                 model_wave_1.eval()
