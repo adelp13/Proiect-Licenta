@@ -28,14 +28,14 @@ class CNN(nn.Module):
         strat = self.strat_conv1(strat)
         strat = self.normalizare1(strat)
         strat = self.relu(strat) # (b, 32, f, t)
-        print(strat.shape)
+
         strat = self.pooling(strat) # (b, 32, f/2, t/2)
-        print(strat.shape)
+
         strat = self.strat_conv2(strat)
         strat = self.normalizare2(strat)
         strat = self.relu(strat)  # (b, 64, f/2, t/2)
         strat = self.pooling(strat)  # (b, 64, f/4, t/4)
-        print(strat.shape)
+
         strat = self.dropout(strat)
 
         strat = self.strat_conv3(strat)
@@ -43,13 +43,13 @@ class CNN(nn.Module):
         strat = self.relu(strat) # (b, 128, f/4, t/4)
 
         strat = self.upsample(strat) # (b, 128, f/2, t/2)
-        print(strat.shape)
+
         strat = self.strat_conv4(strat)  # (b, 64, f/2, t/2)
         strat = self.normalizare4(strat)
         strat = self.relu(strat)
 
         strat = self.upsample(strat) # (b, 64, f, t)
-        print(strat.shape)
+      
         strat = self.strat_conv5(strat)  # (b, 32, f, t)
         strat = self.normalizare5(strat)
         strat = self.relu(strat)
