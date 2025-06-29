@@ -13,7 +13,7 @@ class CNN(nn.Module):
         self.strat_conv5 = nn.Conv2d(in_channels=64, out_channels=32, kernel_size=3, padding=1)
         self.strat_conv6 = nn.Conv2d(in_channels=32, out_channels=canale_iesire, kernel_size=3, padding=1)
 
-        self.pooling = nn.MaxPool2d(kernel_size=2)
+        self.pooling = nn.MaxPool2d(kernel_size=2, ceil_mode=True) # rotunjeste in sus, pt ca 513 nu se divide cu 2, eliminam la final ce e in plus
         self.upsample = nn.Upsample(scale_factor=2, mode='bilinear', align_corners=False)
         self.relu = nn.ReLU()
         self.normalizare1 = nn.BatchNorm2d(32)
@@ -28,13 +28,14 @@ class CNN(nn.Module):
         strat = self.strat_conv1(strat)
         strat = self.normalizare1(strat)
         strat = self.relu(strat) # (b, 32, f, t)
-
+        print(strat.shape)
         strat = self.pooling(strat) # (b, 32, f/2, t/2)
-
+        print(strat.shape)
         strat = self.strat_conv2(strat)
         strat = self.normalizare2(strat)
         strat = self.relu(strat)  # (b, 64, f/2, t/2)
         strat = self.pooling(strat)  # (b, 64, f/4, t/4)
+        print(strat.shape)
         strat = self.dropout(strat)
 
         strat = self.strat_conv3(strat)
@@ -42,17 +43,19 @@ class CNN(nn.Module):
         strat = self.relu(strat) # (b, 128, f/4, t/4)
 
         strat = self.upsample(strat) # (b, 128, f/2, t/2)
-
+        print(strat.shape)
         strat = self.strat_conv4(strat)  # (b, 64, f/2, t/2)
         strat = self.normalizare4(strat)
         strat = self.relu(strat)
 
         strat = self.upsample(strat) # (b, 64, f, t)
-
+        print(strat.shape)
         strat = self.strat_conv5(strat)  # (b, 32, f, t)
         strat = self.normalizare5(strat)
         strat = self.relu(strat)
 
         strat = self.strat_conv6(strat) # (b, 2, f, t)
         strat = self.sigmoid(strat)
+        strat = strat[:, :, :513, :]
+
         return strat
